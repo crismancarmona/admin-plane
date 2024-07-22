@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build && cd ../avion && nest build",
+    "build": "nest build && cd ../plane && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "yarn build && nest start",
     "start:dev": "yarn build && nest start --watch",
@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "start:avion": "node ../avion/dist",
+    "start:plane": "node ../plane/dist",
     "clear-node": "taskkill /F /IM node.exe"
   },
   "dependencies": {
