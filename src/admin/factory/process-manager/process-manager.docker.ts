@@ -1,21 +1,22 @@
-import { Injectable } from "@nestjs/common";
-import { exec } from "child_process";
-import { promisify } from "util";
-import { ProcessManager } from "./process-manager";
+import { Injectable, Logger } from '@nestjs/common';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { ProcessManager } from './process-manager';
 
 @Injectable()
 export class ProcessManagerDocker implements ProcessManager {
+  private readonly logger = new Logger(ProcessManagerDocker.name);
 
-  async prepareProcess(): Promise<void> {
-    const execPromise = promisify(exec);
-    const result = await execPromise('cd C:\\Users\\USUARIO\\Documents\\plane\\plane\\ && docker build . -t plane:latest')
-    console.log(result)
-  }
+  async createPlane(id: string, numberId: number): Promise<void> {
+    try {
+      const execPromise = promisify(exec);
 
-  async createPlane(planeId: number): Promise<void> {
-    const execPromise = promisify(exec);
-
-    const result = await execPromise(`docker rm -f plane-${planeId} && docker run -d -p 300${planeId}:300${planeId} -e AVION_PORT=300${planeId} -e AVION_NAME=plane_${planeId} --name plane-${planeId} plane:latest`)
-    console.log(result)
+      await execPromise(
+        `docker rm -f ${id} && docker run -d -p 300${numberId}:300${numberId} -e PLANE_PORT=300${numberId} -e PLANE_NAME=${id}  -e PLANE_NUMBER_ID=${numberId} --name ${id} plane:latest`,
+      );
+      this.logger.log('The plane ' + id + ' was created successfully');
+    } catch (error) {
+      this.logger.error(error);
+    }
   }
 }

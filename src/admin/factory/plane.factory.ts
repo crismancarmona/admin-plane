@@ -1,15 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { Injectable, Logger } from '@nestjs/common';
+import { Repository } from 'src/core/database/repository';
 import { ProcessManager } from './process-manager/process-manager';
 
 @Injectable()
 export class PlaneFactory {
+  private readonly logger = new Logger(PlaneFactory.name);
 
-  constructor(private readonly processManager: ProcessManager) {
+  constructor(
+    private readonly processManager: ProcessManager,
+    private readonly repository: Repository,
+  ) {}
+
+  public async initStart(): Promise<void> {
+    const planes = await this.repository.getAllPlanes();
+    const promises = planes.map((plane) =>
+      this.createPlane(plane.id, plane.numberId),
+    );
+    await Promise.all(promises);
   }
 
-  public async createPlane(planeId: number): Promise<void> {
-    await this.processManager.createPlane(planeId);
+  public async createPlane(id: string, numberId: number): Promise<void> {
+    await this.processManager.createPlane(id, numberId);
   }
 }

@@ -1,4 +1,3 @@
 export interface ProcessManager {
-    prepareProcess(): Promise<void>
-    createPlane(planeId: number): Promise<void>
+  createPlane(planeId: string, numberId: number): Promise<void>;
 }

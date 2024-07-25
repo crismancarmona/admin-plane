@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AdminController } from './admin/controller/admin.controller';
+import { PlaneFactory } from './admin/factory/plane.factory';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -7,8 +7,8 @@ async function bootstrap() {
 
   await app.listen(3000);
 
-  const adminController = app.get(AdminController);
+  const planeFactory = app.get(PlaneFactory);
 
-  await adminController.createInitPlanes();
+  await planeFactory.initStart();
 }
 bootstrap();
