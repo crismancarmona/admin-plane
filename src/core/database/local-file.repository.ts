@@ -16,23 +16,44 @@ export class LocalFileRepository implements Repository {
 
     const lines = stringFile.split('\n');
 
-    const planes = lines.map((line) => {
-      const columns = line.split(';');
-      const plane: Plane = {
-        id: columns[0],
-        numberId: Number(columns[1]),
-        currentPosition: columns[2]
-          ? JSON.parse(columns[2])
-          : { x: 0, y: 0, z: 0 },
-      };
+    const planes = lines
+      .filter((line) => line !== '')
+      .map((line) => {
+        const columns = line.split(';');
 
-      return plane;
-    });
+        const plane: Plane = new Plane(
+          columns[0],
+          Number(columns[1]),
+          columns[3],
+        );
+        plane.currentPosition = columns[2]
+          ? JSON.parse(columns[2])
+          : { x: 0, y: 0, z: 0 };
+        plane.updatedAt = new Date(Number(columns[4]));
+
+        return plane;
+      });
 
     return planes.filter((plane) => plane.id !== undefined && plane.id !== '');
   }
 
-  async saveAll(planes: Plane[]): Promise<void> {
+  async save(plane: Plane): Promise<void> {
+    const allPlanes = await this.getAllPlanes();
+
+    const index = allPlanes.findIndex(
+      (savedPlane) => savedPlane.id === plane.id,
+    );
+
+    if (index < 0) {
+      allPlanes.push(plane);
+    } else {
+      allPlanes[index] = plane;
+    }
+
+    await this.saveAll(allPlanes);
+  }
+
+  private async saveAll(planes: Plane[]): Promise<void> {
     try {
       if (planes.length > 0) {
         const lines = planes.map((plane) => this.planeToCSV(plane));
@@ -44,17 +65,19 @@ export class LocalFileRepository implements Repository {
     }
   }
 
-  async save(plane: Plane): Promise<void> {
-    try {
-      fs.appendFileSync(FILE_PATH, this.planeToCSV(plane));
-    } catch (error) {
-      this.logger.error(error);
-    }
+  async getById(planeId: string): Promise<Plane | undefined> {
+    const allPlanes = await this.getAllPlanes();
+
+    return allPlanes.find((plane) => plane.id === planeId);
   }
 
   private planeToCSV(plane: Plane): string {
     return `\n${plane.id};${plane.numberId};${JSON.stringify(
       plane.currentPosition ?? { x: 0, y: 0, z: 0 },
-    )}`;
+    )};${plane.port};${
+      plane.updatedAt instanceof Date
+        ? plane.updatedAt.getTime()
+        : plane.updatedAt
+    }`;
   }
 }

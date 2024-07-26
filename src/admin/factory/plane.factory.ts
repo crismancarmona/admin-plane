@@ -1,11 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'src/core/database/repository';
 import { ProcessManager } from './process-manager/process-manager';
 
 @Injectable()
 export class PlaneFactory {
-  private readonly logger = new Logger(PlaneFactory.name);
-
   constructor(
     private readonly processManager: ProcessManager,
     private readonly repository: Repository,
