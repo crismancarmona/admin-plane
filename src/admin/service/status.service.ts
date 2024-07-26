@@ -15,6 +15,9 @@ export class StatusService {
 
   async readPositions(): Promise<void> {
     const allPlanes = await this.repository.getAllPlanes();
+
+    // use lodash for chunk petitions
+
     allPlanes
       .filter((plane) => plane.port !== undefined)
       .forEach(async (plane) => {
