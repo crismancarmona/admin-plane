@@ -9,6 +9,7 @@ import { PlaneFactory } from './factory/plane.factory';
 import { ProcessManagerDocker } from './factory/process-manager/process-manager.docker';
 import { ProcessManagerModule } from './factory/process-manager/process-manager.module';
 import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2';
+import { StatusService } from './service/status.service';
 
 @Module({
   imports: [HttpModule, ProcessManagerModule],
@@ -26,6 +27,7 @@ import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2
         return new PlaneFactory(processManager, repository);
       },
     },
+    StatusService,
   ],
 })
 export class AdminModule {}
