@@ -1,8 +1,8 @@
-import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Config } from 'src/core/Config';
 import { Repository } from 'src/core/database/repository';
+import { PlaneModule } from 'src/plane/plane.module';
 import { AdminController } from './controller/admin.controller';
 import { StatusController } from './controller/status.controller';
 import { PlaneFactory } from './factory/plane.factory';
@@ -12,7 +12,7 @@ import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2
 import { StatusService } from './service/status.service';
 
 @Module({
-  imports: [HttpModule, ProcessManagerModule],
+  imports: [PlaneModule, ProcessManagerModule],
   controllers: [AdminController, StatusController],
   providers: [
     {
