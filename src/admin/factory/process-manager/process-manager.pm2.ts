@@ -2,11 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { ProcessManager } from './process-manager';
+import { Plane } from 'types/dist/domain/plane';
 
 @Injectable()
 export class ProcessManagerPM2 implements ProcessManager {
+  async removePlane(plane: Pick<Plane, 'id'>): Promise<void> {
+    try {
+      const exexPromise = promisify(exec);
+
+      await exexPromise(`pm2 stop ${plane.id}`, { timeout: 1000 });
+    } catch (error) {
+      console.warn('The plane does not exist. Creating it.');
+    }
+  }
   async createPlane(id: string, numberId: number): Promise<void> {
-    console.log('Creating ' + id);
+    await this.removePlane({ id });
 
     const exexPromise = promisify(exec);
 
