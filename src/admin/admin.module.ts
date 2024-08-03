@@ -10,7 +10,6 @@ import { ProcessManagerDocker } from './factory/process-manager/process-manager.
 import { ProcessManagerModule } from './factory/process-manager/process-manager.module';
 import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2';
 import { StatusService } from './service/status.service';
-import { RadarService } from './output/radar.service';
 
 @Module({
   imports: [PlaneModule, ProcessManagerModule],
@@ -29,7 +28,6 @@ import { RadarService } from './output/radar.service';
       },
     },
     StatusService,
-    RadarService,
   ],
 })
 export class AdminModule {}

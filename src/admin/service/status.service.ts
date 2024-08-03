@@ -3,7 +3,6 @@ import { chunk } from 'lodash';
 import { Repository } from 'src/core/database/repository';
 import { PlaneService } from 'src/plane/service/plane.service';
 import { Plane } from 'types/dist/domain/plane';
-import { RadarService } from '../output/radar.service';
 
 @Injectable()
 export class StatusService {
@@ -12,7 +11,6 @@ export class StatusService {
   constructor(
     private readonly planeService: PlaneService,
     private readonly repository: Repository,
-    private readonly radarService: RadarService,
   ) {}
 
   async readPositions(): Promise<void> {
@@ -35,8 +33,6 @@ export class StatusService {
           }
         });
     });
-
-    this.radarService.drawRadar(allPlanes);
   }
 
   async registerPlane(plane: Plane): Promise<void> {
