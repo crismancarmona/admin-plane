@@ -17,4 +17,21 @@ export class ControlService {
     }
     return this.planeService.takeOff(plane);
   }
+
+  async stopEngine(planeId: string): Promise<void> {
+    const plane: Plane | undefined = await this.repository.getById(planeId);
+    if (!plane) {
+      throw new NotFoundException('no plane found with id ' + planeId);
+    }
+    return this.planeService.stopEngine(plane);
+  }
+
+  async rotate(planeId: string, angle: string): Promise<void> {
+    const plane: Plane | undefined = await this.repository.getById(planeId);
+    if (!plane) {
+      throw new NotFoundException('no plane found with id ' + planeId);
+    }
+
+    return this.planeService.rotate(plane, angle);
+  }
 }

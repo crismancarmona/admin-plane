@@ -19,6 +19,21 @@ export class PlaneService {
     return this.processAction<void>(plane, actionDto);
   }
 
+  async stopEngine(plane: Plane): Promise<void> {
+    const actionDto: ProcessActionDto = {
+      action: Action.STOP_ENGINE,
+    };
+    return this.processAction<void>(plane, actionDto);
+  }
+
+  async rotate(plane: Plane, angle: string): Promise<void> {
+    const actionDto: ProcessActionDto = {
+      action: Action.ROTATE,
+      params: { angle },
+    };
+    return this.processAction<void>(plane, actionDto);
+  }
+
   async getStatus(plane: Plane): Promise<Plane> {
     const url = `${BASE_URL + plane.port}/plane/status`;
 

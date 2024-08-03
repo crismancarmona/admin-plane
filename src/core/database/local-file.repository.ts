@@ -26,7 +26,7 @@ export class LocalFileRepository implements Repository {
           Number(columns[1]),
           columns[3],
         );
-        plane.currentPosition = columns[2]
+        plane.stats = columns[2]
           ? JSON.parse(columns[2])
           : { x: 0, y: 0, z: 0 };
         plane.updatedAt = new Date(Number(columns[4]));
@@ -73,7 +73,7 @@ export class LocalFileRepository implements Repository {
 
   private planeToCSV(plane: Plane): string {
     return `\n${plane.id};${plane.numberId};${JSON.stringify(
-      plane.currentPosition ?? { x: 0, y: 0, z: 0 },
+      plane.stats ?? {},
     )};${plane.port};${
       plane.updatedAt instanceof Date
         ? plane.updatedAt.getTime()

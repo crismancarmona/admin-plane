@@ -36,14 +36,7 @@ export class StatusService {
         });
     });
 
-    const positions = allPlanes.map((plane) => {
-      return {
-        x: plane.currentPosition!.x,
-        y: plane.currentPosition!.y,
-        name: String(plane.numberId),
-      };
-    });
-    this.radarService.drawRadar(positions);
+    this.radarService.drawRadar(allPlanes);
   }
 
   async registerPlane(plane: Plane): Promise<void> {
