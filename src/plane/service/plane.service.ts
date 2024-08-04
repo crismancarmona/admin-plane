@@ -1,10 +1,8 @@
+import { Action, Plane, ProcessActionDto } from '@crisman999/plane-types';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
-import { Plane } from 'types/dist/domain/plane';
-import { Action } from 'types/dist/process/Action';
-import { ProcessActionDto } from 'types/dist/process/ProcessActionDto';
 
 const BASE_URL = 'http://127.0.0.1:';
 

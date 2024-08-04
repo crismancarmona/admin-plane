@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 import { StatusService } from '../service/status.service';
 
 @Controller('/status')

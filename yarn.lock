@@ -342,6 +342,11 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
+"@crisman999/plane-types@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@crisman999/plane-types/-/plane-types-0.1.1.tgz#23fdd26c44a98005c2e8fcb2854b8aa6ebd2b549"
+  integrity sha512-mb4ehAn8dWc6HMxm2k3G5jdOXOoVAxvEO0LAzk+E1liQtaguZCTC0eG0RXSALS3qwsLnatLaOqpYY3R1cpflmA==
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"
@@ -5401,9 +5406,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
-
-"types@file:../plane-types":
-  version "0.0.1"
 
 typescript@5.2.2:
   version "5.2.2"

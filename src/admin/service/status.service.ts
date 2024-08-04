@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { chunk } from 'lodash';
 import { Repository } from 'src/core/database/repository';
 import { PlaneService } from 'src/plane/service/plane.service';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 @Injectable()
 export class StatusService {

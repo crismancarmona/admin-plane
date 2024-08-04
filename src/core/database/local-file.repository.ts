@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import fs from 'fs';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 import { Repository } from './repository';
 
 const FILE_PATH = './database/local.csv';

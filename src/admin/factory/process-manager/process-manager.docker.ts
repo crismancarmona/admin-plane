@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { ProcessManager } from './process-manager';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 @Injectable()
 export class ProcessManagerDocker implements ProcessManager {

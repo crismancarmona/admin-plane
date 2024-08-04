@@ -1,4 +1,4 @@
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 export abstract class Repository {
   abstract getAllPlanes(): Promise<Plane[]>;

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from './repository';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 @Injectable()
 export class InMemoryRepository implements Repository {

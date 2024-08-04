@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { PlaneFactory } from '../factory/plane.factory';
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 @Controller('/admin')
 export class AdminController {

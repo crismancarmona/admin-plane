@@ -1,4 +1,4 @@
-import { Plane } from 'types/dist/domain/plane';
+import { Plane } from '@crisman999/plane-types';
 
 export interface ProcessManager {
   createPlane(planeId: string, numberId: number): Promise<void>;
