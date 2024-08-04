@@ -22,6 +22,9 @@
     "clear-node": "taskkill /F /IM node.exe"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.623.0",
+    "@aws-sdk/lib-dynamodb": "^3.623.0",
+    "@aws-sdk/util-dynamodb": "^3.623.0",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",

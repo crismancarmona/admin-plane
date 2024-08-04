@@ -24,11 +24,12 @@ export class StatusService {
         .forEach(async (plane) => {
           try {
             const updatedPlane = await this.planeService.getStatus(plane);
-            updatedPlane.updatedAt = new Date();
+            updatedPlane.updatedAt = new Date().toString() as unknown as Date;
             await this.repository.save(updatedPlane);
           } catch (error) {
             this.logger.warn(
               `There is no communication with the plane with id ${plane.id}`,
+              error,
             );
           }
         });

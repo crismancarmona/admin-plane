@@ -1,0 +1,16 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566" # Puerto para la API de LocalStack
+      - "4510:4510" # Puerto opcional para la interfaz de administración de LocalStack
+    volumes:
+      - "./localstack:/etc/localstack"
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=foo
+      - AWS_SECRET_ACCESS_KEY=bar
+      - LOCALSTACK_AUTH_TOKEN=ls-zetoLOsi-mUZO-yIxO-9707-SAjE7273bfcf
+
