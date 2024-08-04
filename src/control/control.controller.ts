@@ -22,4 +22,12 @@ export class ControlController {
   ) {
     await this.controlService.rotate(planeId, angle);
   }
+
+  @Post('acelerate/:planeId')
+  async acelerate(
+    @Param('planeId') planeId: string,
+    @Query('velocity') velocity: string,
+  ) {
+    await this.controlService.acelerate(planeId, velocity);
+  }
 }

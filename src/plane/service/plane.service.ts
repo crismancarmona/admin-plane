@@ -34,6 +34,14 @@ export class PlaneService {
     return this.processAction<void>(plane, actionDto);
   }
 
+  async acelerate(plane: Plane, velocity: string): Promise<void> {
+    const actionDto: ProcessActionDto = {
+      action: Action.ACELERATE,
+      params: { velocity },
+    };
+    return this.processAction<void>(plane, actionDto);
+  }
+
   async getStatus(plane: Plane): Promise<Plane> {
     const url = `${BASE_URL + plane.port}/plane/status`;
 

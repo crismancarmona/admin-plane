@@ -34,4 +34,13 @@ export class ControlService {
 
     return this.planeService.rotate(plane, angle);
   }
+
+  async acelerate(planeId: string, velocity: string): Promise<void> {
+    const plane: Plane | undefined = await this.repository.getById(planeId);
+    if (!plane) {
+      throw new NotFoundException('no plane found with id ' + planeId);
+    }
+
+    return this.planeService.acelerate(plane, velocity);
+  }
 }
