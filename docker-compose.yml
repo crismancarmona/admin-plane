@@ -4,7 +4,7 @@ services:
     container_name: localstack
     ports:
       - "4566:4566" # Puerto para la API de LocalStack
-      - "4510:4510" # Puerto opcional para la interfaz de administración de LocalStack
+      - "4510-4559:4510-4559" # Puerto opcional para la interfaz de administración de LocalStack
     volumes:
       - "./localstack:/etc/localstack"
     environment:
@@ -13,4 +13,18 @@ services:
       - AWS_ACCESS_KEY_ID=foo
       - AWS_SECRET_ACCESS_KEY=bar
       - LOCALSTACK_AUTH_TOKEN=ls-zetoLOsi-mUZO-yIxO-9707-SAjE7273bfcf
-
+      - LOCALSTACK_SERVICES=sns,dynamodb
+  terraform:
+    image: zenika/terraform-aws-cli:latest
+    depends_on:
+      - localstack
+    volumes:
+      - .:/workspace
+    working_dir: /workspace/terraform
+    environment:
+      - AWS_ACCESS_KEY_ID=foo
+      - AWS_SECRET_ACCESS_KEY=bar
+      - AWS_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
+    entrypoint: [ "/bin/sh", "-c" ]
+    command: [ "terraform apply -auto-approve" ]

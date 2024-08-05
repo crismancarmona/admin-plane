@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Config } from 'src/core/Config';
 import { Repository } from 'src/core/database/repository';
@@ -10,10 +10,13 @@ import { ProcessManagerDocker } from './factory/process-manager/process-manager.
 import { ProcessManagerModule } from './factory/process-manager/process-manager.module';
 import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2';
 import { StatusService } from './service/status.service';
+import { SnsController } from './controller/sns.controller';
+import { HttpModule } from '@nestjs/axios';
+import { TextBodyMiddleware } from 'src/core/middleware/textbody.middleware';
 
 @Module({
-  imports: [PlaneModule, ProcessManagerModule],
-  controllers: [AdminController, StatusController],
+  imports: [PlaneModule, ProcessManagerModule, HttpModule],
+  controllers: [AdminController, StatusController, SnsController],
   providers: [
     {
       provide: PlaneFactory,
@@ -28,6 +31,11 @@ import { StatusService } from './service/status.service';
       },
     },
     StatusService,
+    TextBodyMiddleware,
   ],
 })
-export class AdminModule {}
+export class AdminModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(TextBodyMiddleware).forRoutes('sns');
+  }
+}

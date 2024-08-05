@@ -11,7 +11,7 @@ import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
       useFactory: () => {
         const client = new DynamoDBClient({
           region: 'us-east-1',
-          endpoint: 'http://localhost:4566', // Endpoint para LocalStack
+          endpoint: 'http://localhost:4566',
           credentials: {
             accessKeyId: 'foo',
             secretAccessKey: 'bar',

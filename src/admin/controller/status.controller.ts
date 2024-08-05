@@ -4,9 +4,7 @@ import { StatusService } from '../service/status.service';
 
 @Controller('/status')
 export class StatusController {
-  constructor(private readonly statusService: StatusService) {
-    setInterval(() => this.statusService.readPositions(), 2000);
-  }
+  constructor(private readonly statusService: StatusService) {}
 
   @Post('/plane/register')
   async registerPlane(@Body() plane: Plane) {

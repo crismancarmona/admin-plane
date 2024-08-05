@@ -819,10 +819,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@crisman999/plane-types@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@crisman999/plane-types/-/plane-types-0.1.1.tgz#23fdd26c44a98005c2e8fcb2854b8aa6ebd2b549"
-  integrity sha512-mb4ehAn8dWc6HMxm2k3G5jdOXOoVAxvEO0LAzk+E1liQtaguZCTC0eG0RXSALS3qwsLnatLaOqpYY3R1cpflmA==
+"@crisman999/plane-types@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@crisman999/plane-types/-/plane-types-0.1.5.tgz#5ed088ae962931009730ee0293cea2a332bb2ef1"
+  integrity sha512-SN5k5WeBgq/fk9T/lmS9trbcMXcVqla06kcYCDyvqqDOtkA7Oeck2utiXyfvqk7cJQkW0XfvqSV4xq9h+BDqQw==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -2607,7 +2607,7 @@ body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-body-parser@1.20.2:
+body-parser@1.20.2, body-parser@^1.20.2:
   version "1.20.2"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.2.tgz#6feb0e21c4724d06de7ff38da36dad4f57a747fd"
   integrity sha512-ml9pReCu3M61kGlqoTm2umSXTlRTuGTx0bfYj+uIUKKYycG5NtSbeetV3faSU6R7ajOPw0g/J1PvK4qNy7s5bA==

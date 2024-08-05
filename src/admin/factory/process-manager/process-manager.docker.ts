@@ -14,7 +14,7 @@ export class ProcessManagerDocker implements ProcessManager {
     try {
       await this.removePlane({ id });
       await this.execPromise(
-        `docker run -d -p 300${numberId}:300${numberId} -e PLANE_PORT=300${numberId} -e PLANE_NAME=${id}  -e PLANE_NUMBER_ID=${numberId} --cpus="1.0" --name ${id} plane:latest`,
+        `docker run -d -p 300${numberId}:300${numberId} -e PLANE_PORT=300${numberId} -e PLANE_NAME=${id}  -e PLANE_NUMBER_ID=${numberId} --cpus="1.0" --name ${id} --network admin-plane_default plane:latest`,
       );
       this.logger.log('The plane ' + id + ' was created successfully');
     } catch (error) {
