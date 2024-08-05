@@ -27,6 +27,7 @@ export class SnsController {
   ): Promise<string> {
     const snsMessage = JSON.parse(message);
     if (messageType === 'SubscriptionConfirmation') {
+      console.log('sns connected');
       await axios.get(snsMessage.SubscribeURL);
     }
     if (messageType === 'Notification') {
