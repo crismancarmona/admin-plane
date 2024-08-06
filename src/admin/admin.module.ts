@@ -10,13 +10,12 @@ import { ProcessManagerDocker } from './factory/process-manager/process-manager.
 import { ProcessManagerModule } from './factory/process-manager/process-manager.module';
 import { ProcessManagerPM2 } from './factory/process-manager/process-manager.pm2';
 import { StatusService } from './service/status.service';
-import { SnsController } from './controller/sns.controller';
 import { HttpModule } from '@nestjs/axios';
 import { TextBodyMiddleware } from 'src/core/middleware/textbody.middleware';
 
 @Module({
   imports: [PlaneModule, ProcessManagerModule, HttpModule],
-  controllers: [AdminController, StatusController, SnsController],
+  controllers: [AdminController, StatusController],
   providers: [
     {
       provide: PlaneFactory,
@@ -33,6 +32,7 @@ import { TextBodyMiddleware } from 'src/core/middleware/textbody.middleware';
     StatusService,
     TextBodyMiddleware,
   ],
+  exports: [StatusService],
 })
 export class AdminModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

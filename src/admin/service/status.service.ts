@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { chunk } from 'lodash';
 import { Repository } from 'src/core/database/repository';
-import { PlaneService } from 'src/plane/service/plane.service';
+import { PlaneRestService } from 'src/plane/service/plane.rest.service';
 import { Plane, PlaneDto } from '@crisman999/plane-types';
 
 @Injectable()

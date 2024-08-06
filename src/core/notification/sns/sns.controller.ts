@@ -1,23 +1,21 @@
+import { PlaneDto } from '@crisman999/plane-types';
 import {
   Body,
   Controller,
+  Headers,
   HttpCode,
   HttpStatus,
+  Logger,
   Post,
-  Headers,
-  Request,
 } from '@nestjs/common';
-import { StatusService } from '../service/status.service';
-import { PlaneDto } from '@crisman999/plane-types';
-import { HttpService } from '@nestjs/axios';
 import axios from 'axios';
+import { StatusService } from '../../../admin/service/status.service';
 
 @Controller('sns')
 export class SnsController {
-  constructor(
-    private readonly statusService: StatusService,
-    private readonly httpService: HttpService,
-  ) {}
+  private readonly logger = new Logger(SnsController.name);
+
+  constructor(private readonly statusService: StatusService) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
@@ -27,7 +25,7 @@ export class SnsController {
   ): Promise<string> {
     const snsMessage = JSON.parse(message);
     if (messageType === 'SubscriptionConfirmation') {
-      console.log('sns connected');
+      this.logger.log('SNS Connected ');
       await axios.get(snsMessage.SubscribeURL);
     }
     if (messageType === 'Notification') {

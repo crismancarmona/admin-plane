@@ -10,11 +10,11 @@ export class PlaneFactory {
   ) {}
 
   public async initStart(): Promise<void> {
-    /*const planes = await this.repository.getAllPlanes();
+    const planes = await this.repository.getAllPlanes();
     const promises = planes.map((plane) =>
       this.createPlane(plane.id, plane.numberId),
     );
-    await Promise.all(promises);*/
+    await Promise.all(promises);
   }
 
   public async createPlane(id: string, numberId: number): Promise<void> {

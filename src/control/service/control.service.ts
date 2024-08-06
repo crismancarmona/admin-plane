@@ -1,7 +1,7 @@
+import { Plane } from '@crisman999/plane-types';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'src/core/database/repository';
 import { PlaneService } from 'src/plane/service/plane.service';
-import { Plane } from '@crisman999/plane-types';
 
 @Injectable()
 export class ControlService {

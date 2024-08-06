@@ -7,13 +7,15 @@ services:
       - "4510-4559:4510-4559" # Puerto opcional para la interfaz de administración de LocalStack
     volumes:
       - localstack_data:/etc/localstack
+      - localstack_data:/var/lib/localstack
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - AWS_DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=foo
       - AWS_SECRET_ACCESS_KEY=bar
       - LOCALSTACK_AUTH_TOKEN=ls-zetoLOsi-mUZO-yIxO-9707-SAjE7273bfcf
-      - LOCALSTACK_SERVICES=sns,dynamodb
+      - LOCALSTACK_SERVICES=sns,dynamodb,sqs
+      - LS_LOG=error
   terraform:
     image: hashicorp/terraform:latest
     deploy:
@@ -26,18 +28,16 @@ services:
     volumes:
       - ./terraform:/workspace
       - terraform_cache:/root/.terraform.d
+      - terraform_state:/workspace/.terraform
     working_dir: /workspace
     environment:
       - AWS_ACCESS_KEY_ID=foo
       - AWS_SECRET_ACCESS_KEY=bar
       - AWS_REGION=us-east-1
       - AWS_ENDPOINT_URL=http://localstack:4566
-    entrypoint: [ "/bin/sh", "-c" ]
-    command:
-      [
-        "echo \"starting process\" && terraform plan && terraform apply -auto-approve -no-color"
-      ]
+    entrypoint: [ "/workspace/entrypoint.sh" ]
 
 volumes:
   localstack_data: {}
   terraform_cache: {}
+  terraform_state: {}

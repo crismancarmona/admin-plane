@@ -30,16 +30,8 @@ resource "aws_sns_topic" "plane-status-topic" {
   name     = "plane-status-topic"
 }
 
-resource "aws_sns_topic_subscription" "plane_status_subscription" {
+resource "aws_sqs_queue" "plane-actions-queue" {
   provider = aws.localstack
-  topic_arn = aws_sns_topic.plane-status-topic.arn
-  protocol  = "http"
-  endpoint  = "http://host.docker.internal:3000/sns"
-  endpoint_auto_confirms = true
-  raw_message_delivery = true
-
-  lifecycle {
-    create_before_destroy = true
-  }
-
+  name                       = "plane-actions-queue"
+  visibility_timeout_seconds = 5
 }
