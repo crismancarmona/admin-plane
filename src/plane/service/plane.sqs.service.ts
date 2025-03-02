@@ -1,12 +1,15 @@
 import { Action, Plane, ProcessActionDto } from '@crisman999/plane-types';
 import { Injectable, Logger } from '@nestjs/common';
 import { SqsService } from 'src/core/notification/sqs/sqs.service';
+import { PlaneService } from './plane.service';
 
 @Injectable()
-export class PlaneSqsService {
+export class PlaneSqsService extends PlaneService {
   private readonly logger = new Logger(PlaneSqsService.name);
 
-  constructor(private readonly sqsService: SqsService) {}
+  constructor(private readonly sqsService: SqsService) {
+    super();
+  }
 
   async takeOff(plane: Plane): Promise<void> {
     const actionDto: ProcessActionDto = {

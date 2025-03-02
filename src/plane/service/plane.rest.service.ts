@@ -3,12 +3,15 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
+import { PlaneService } from './plane.service';
 
 const BASE_URL = 'http://127.0.0.1:';
 
 @Injectable()
-export class PlaneRestService {
-  constructor(private readonly httpService: HttpService) {}
+export class PlaneRestService extends PlaneService {
+  constructor(private readonly httpService: HttpService) {
+    super();
+  }
 
   async takeOff(plane: Plane): Promise<void> {
     const actionDto: ProcessActionDto = {
